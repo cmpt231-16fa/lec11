@@ -97,3 +97,270 @@ def KruskalMST( V, E, w ):
 </code></pre></div><div>
 ![Fig 23-1: Kruskal](static/img/Fig-23-1.svg)
 </div></div>
+
+---
+## Kruskal: complexity
++ **Initialise** components: *|V|* &lowast; `MakeSet`
++ **Sort** edge list by weight: *|E| lg( |E| )*
++ Main **for** loop: *|E|* &lowast; `FindSet` + *|V|* &lowast; `Union`
++ **Disjoint-set** implementation (see *ch21*):
+  + Forest with union by rank and path compression
+  + `FindSet` and `Union` are both O( *&alpha;(|V|)* )
+    + *&alpha;()*: inverse **Ackermann** function: very slow growth,
+      *&alpha;(n)* &le; *4* for all reasonable *n*
++ So Kruskal is O( *|V|* + *|E| lg( |E| )* ) = O( *|E| lg( |E| )* )
+  + Note that \`|V|-1 <= |E| <= |V|^2\`
++ If edges are **pre-sorted**, just O( *|E| &alpha;(|V|)* ),
+  or basically **linear** in *|E|*
+
+---
+## Outline
+
+---
+## Prim's algorithm for MST
++ Start from arbitrary **root** *r*
++ Build tree by adding **light edges** crossing \`(V\_A, V-V\_A)\`
+  + \`V\_A\` = vertices **incident** on *A*
++ Use **priority queue** *Q* to store vertices in \`V-V\_A\`:
+  + **Key** of vertex *v* is \`min\_(u in V\_A) w(u,v)\`
+  + *Q.popMin()* returns the destination of a **light edge**
++ At each **iteration**: *A* is always a **tree**, and
+  + *A* = { (*v*, *v.par*): *v* &in; *V* - {*r*} - *Q* }
+  + Encode MST in the **parent** links *v.par*
+
+---
+## Prim: example
+<div class="imgbox"><div><pre><code data-trim>
+def PrimMST( V, E, w, r ):
+  Q = new PriorityQueue( V )
+  Q.setPriority( r, 0 )
+
+  while Q.notEmpty():
+    u = Q.popMin()
+    for v in E.adj[ u ]:
+      if Q.exists( v ) and w( u, v ) < v.key:
+        v.parent = u
+        Q.setPriority( v, w( u, v ) )
+</code></pre></div><div>
+![Fig 23-1: Kruskal](static/img/Fig-23-1.svg)
+</div></div>
+
+---
+## Prim: complexity
++ **Initialise** queue: *|V|* &lowast; `Q.insert()`
+  + A single `Q.setPriority()` on the **root**
++ Main **while** loop: *|V|* &lowast; `Q.popMin()` + O(*|E|*) &lowast; `Q.setPriority()`
++ Using **binary min-heap** implementation:
+  + All operations are O( *lg |V|* )
+  + **Total**: O( *|V| lg |V|* + *lg |V|* + *|V| lg |V|* + *|E| lg |V|* )
+    <br/> = O( *|E| lg |V|* )
++ Using **Fibonacci heaps** *(ch19)* instead:
+  + \`Q.setPriority()\` in O(*1*) **amortised** time
+  + **Total**: O( *|V| lg |V|* + *|E|* )
+
+---
+## Outline
+
+---
+## Uniqueness of MST
++ In general, may be **multiple** MSTs
++ *(#23.1-6)*: if every **cut** has a **unique** light edge crossing it,
+  then MST is **unique**
++ **Proof**: Let *T* and *T'* be two **MST**s of a graph
+  + Let *(u,v)* &in; *T*.  Want to show *(u,v)* &in; *T'*:
++ *T* is a **tree**, so *T* - {*(u,v)*} produces a **cut**: call it *(S, V-S)*
++ Then *(u,v)* is a **light edge** crossing *(S, V-S)* (*#23.1-3*)
++ But *T'* must also **cross** the cut: call its edge *(x,y)*
+  + *(x,y)* is also a **light edge** crossing *(S, V-S)*
++ By assumption, the light edge is **unique**
+  + So *(u,v)* = *(x,y)*, so *(u,v)* &in; *T'*
+
+---
+## Outline
+
+---
+## Shortest-path problems
++ **Input**: directed **graph** *(V, E)* and edge **weights** *w*
++ **Output**: find **shortest paths** between all vertices
+  + For any **path** \`p = {v\_i)\_0^k\`,
+    its **weight** is \`w(p) = sum w(v\_(i-1), v\_i)\`
++ The **shortest-path weight** is *&delta;(u,v)* = *min( w(p) )*
+  + (or *&infin;* if *v* is not **reachable** from *u*)
+  + Shortest path not always **unique**
+
+![Fig 24-2: shortest paths](static/img/Fig-24-2.svg)
+
+---
+## Applications of shortest-path
++ **GPS**/maps: turn-by-turn *directions*
+  + **All-pairs**: optimise over entire *fleet* of trucks
+  + **Logistics** / operations research
++ **Networking**: optimal *routing*
++ **Robotics**, self-driving: *path* planning
++ **Layout** in *factories*, FPGA / *chip* design
++ Solving **puzzles**, e.g., *Rubik's Cube*:
+  + *V* = states, *E* = transitions / moves
+
+![Google self-driving car]()
+![CPU chip design]()
+
+---
+## Variants of shortest-path
++ Single **source**: for a given source *s* &in; V,
+  + Find shortest paths to **all** other vertices in V
++ Single **destination**: fix **sink** instead
++ Single **pair**: given *u, v* &in; V
+  + No better known way than to use **single-source**
++ **All-pairs**: simultaneously find paths for **all**
+  possible sources and destinations *(ch25)*
++ **Negative-weight** edges: usually *allowable*
+  + Just can't allow **net-negative** cycles!
+  + **Net-positive** cycles don't help with shortest-path, either
+
+---
+## Single-source shortest paths
++ **Output**: for each vertex *v* &in; V, store:
+  + *v.parent*: links form a **tree** rooted at source
+  + *v.d*: shortest-path **weight** from source
+    + All initially *&infin;*, except *src.d* = *0*
++ Method: **edge relaxation**
+  + Will **using** the edge *(u,v)* **improve** the
+    shortest-path estimate to *v*?
++ Algorithms differ in **sequence** of relaxing edges
+
+```
+def relaxEdge( u, v, w ):
+  if v.d > u.d + w( u, v ):
+    v.d = u.d + w( u, v )
+    v.parent = u
+```
+
+---
+## Shortest-path: optim substruct
++ Any **subpath** of a shortest path is itself a shortest path:
++ Let \`p = p\_(ux) + p\_(xy) + p\_(yv)\` be a **shortest path**
+  from *u* &rarr; *v*:
+  + So \`delta(u, v) = w(p) = w(p\_(ux)) + w(p\_(xy)) + w(p\_(yv))\`
++ Let \`p'\_(xy)\` be a **shorter** path from *x* &rarr; *y*:
+  so \`w(p'\_(xy)) < w(p\_(xy))\`
++ Then we can **swap** out \`p'\_(xy)\` for \`p\_(xy)\`:
+  + Let \`p' = p\_(ux) + p'\_(xy) + p\_(yv)\`
+  + So *w(p')* = \`w(p\_(ux)) + w(p'\_(xy)) + w(p\_(yv))\`
+    < \`w(p\_(ux)) + w(p\_(xy)) + w(p\_(yv))\` = *w(p)*
++ This **contradicts** the assumption that *p* was the shortest path
+  from *u* &rarr; *v*
+
+---
+## Properties / lemmas
++ **Triangle inequality**: *&delta;(s,v)* &le; *&delta;(s,u)* + *w(u,v)*
++ **Upper-bound**: *v.d* is monotone **non-increasing** with edge relaxations,
+  and *v.d* &ge; *&delta;(s,v)* always
++ **No-path** property: if *&delta;(s,v)* = *&infin;*, then *v.d* = *&infin;* always
++ **Convergence** property:
+  + If *s* &#x21DD; *u* &rarr; *v* is a **shortest path**,
+    and *u.d* = *&delta;(s,u)*,
+  + then after **relaxing** *(u,v)*, we have *v.d* = *&delta;(s,v)*
+  + (due to **optimal substructure**: *&delta;(s,u)* + *w(u,v)* = *&delta;(s,v)*)
++ **Path relaxation** property:
+  + If \`p = (v\_0=s, v\_1, ..., v\_k=v)\` is a **shortest path** to *v*,
+  + Then after **relaxing** its edges in **order**, *v.d* = *&delta;(s,v)*
+
+---
+## Outline
+
+---
+## Bellman-Ford algo for SSSP
++ Allows **negative-weight** edges
+  + If any **net-negative** cycle is reachable, returns *FALSE*
++ **Relax** every edge, *|V|-1* times (**complexity**?)
++ Guaranteed to **converge** since shortest paths have &le; *|V|-1* edges
+  + Each **iteration** relaxes one edge along shortest path
+
+<div class="imgbox"><div><pre><code data-trim>
+def initSingleSource( V, E, src ):
+  for v in V:
+    v.d = &infin;
+  src.d = 0
+
+def ssspBellmanFord( V, E, w, src ):
+  initSingleSource( V, E, src )
+  for i in 1 .. |V| - 1:
+    for (u,v) in E:
+      relaxEdge( u, v, w )
+  for (u,v) in E:
+    if v.d > u.d + w( u, v ):
+      return FALSE
+</code></pre></div><div>
+![Bellman-Ford](static/img/bellman-ford.svg)
+</div></div>
+
+---
+## Single-source in DAG
++ Directed **acyclic** graph: no worries about cycles
++ Pre-sort vertices by **topological sort**:
+  + Edges of **all** paths are relaxed **in order**
+  + Don't need to **iterate** *|V|-1* times over all edges
+
+<div class="imgbox"><div><pre><code data-trim>
+def ssspDAG( V, E, w, src ):
+  topologicalSort( V, E )
+  initSingleSource( V, E, src )
+  for u in V:
+    for v in E.adj[ u ]:
+      relaxEdge( u, v, w )
+</code></pre></div><div>
+![topological sort](static/img/topo-sort.svg)
+</div></div>
+
+---
+## Outline
+
+---
+## Dijkstra's algo for SSSP
++ **Doesn't** handle negative-weight edges
++ Weighted version of **breadth-first** search
++ Use **priority queue** instead of FIFO
+  + Keys are the **shortest-path** estimates *v.d*
+  + Similar to **Prim** but calculates *v.d*
++ **Greedy** choice: select *u* with **lowest** *u.d*
+
+<div class="imgbox"><div><pre><code data-trim>
+def ssspDijkstra( V, E, w, src ):
+  initSingleSource( V, E, src )
+  Q = new PriorityQueue( V )
+  while Q.notEmpty():
+    u = Q.popMin()
+    for v in E.adj[ u ]:
+      relaxEdge( u, v, w )
+</code></pre></div><div>
+![Dijkstra](static/img/dijkstra.svg)
+</div></div>
+
+---
+## Dijkstra: correctness
++ **Invariant**: at top of loop, *u.d* = *&delta;(s,u)* &forall; *u* &notin; *Q*
++ **Proof**: suppose **not**: let *u* be the **first** vertex popped from *Q*
+  with *u.d* &ne; *&delta;(s,u)*
+  + &exist; **path** *s* &#x21DD; *u* (or else *u.d* = *&infin;* = *&delta;(s,u)*)
++ Let *p* be a **shortest** path *s* &#x21DD; *u*
+  + Let *(x,y)* be the **first** edge in *p* crossing from *!Q* to *Q*
+  + So *x.d* = *&delta;(s,d)*, since *u* is **first** with *u.d* &ne; *&delta;(s,u)*
++ We **relaxed** *(x,y)*, so *y.d* = *&delta;(s,y)* (by **convergence**)
+  + And *y* is on the shortest path, so *&delta;(s,y)* &le; *&delta;(s,u)* &le; *u.d*
++ But **both** *y* and *u* &in; *Q* when we `popMin()`, so *u.d* &le; *y.d*
++ Hence *u.d* = *y.d* = *&delta;(s,u)*, a **contradiction**
+
+---
+## Dijkstra: complexity
++ **Initialisation**: &Theta;( *|V|* )
++ `Q.popMin()` is run exactly *|V|* times
++ `Q.setPriority()` (called by `relaxEdge`) is run O( *|E|* ) times
++ Using **binary min-heaps**, all ops are O( *lg |V|* )
+  + **Total** time: O( *|E| lg |V|* )
++ Using **Fibonacci heaps**:
+  + `Q.setPriority()` takes only O(*1*) **amortised** time
+  + **Total** time: O( *|V| lg |V|* + *|E|* )
+
+---
+## Outline
+
