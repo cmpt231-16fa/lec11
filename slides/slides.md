@@ -28,3 +28,16 @@
 + **Applications**:
   + Utilities: gas/elec/water (Borůvka, Moravia), internet
   + Image analysis: registration, OCR
+
+---
+## Outline of generic solution
+```
+def MST( V, E ):
+  init A = {}
+  until A spans V:
+    find a "safe edge" to add
+    add it to A
+```
++ Build up a solution *A*, one **edge** at a time
+  + Loop iterates exactly *|V| - 1* times
++ What is a "**safe edge**" to add?
