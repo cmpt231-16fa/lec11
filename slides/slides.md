@@ -147,15 +147,16 @@ def PrimMST( V, E, w, r ):
 
 ---
 ## Prim: complexity
-+ **Initialise** queue: *|V|* &lowast; `Q.insert()`
-  + A single `Q.setPriority()` on the **root**
-+ Main **while** loop: *|V|* &lowast; `Q.popMin()` + O(*|E|*) &lowast; `Q.setPriority()`
++ **Initialise** queue: *|V|* calls to *Q.insert()*
+  + Plus a single *Q.setPriority()* on the **root**
++ Main **while** loop: *|V|* calls to *Q.popMin()*
+  + and O(*|E|*) calls to *Q.setPriority()*
 + Using **binary min-heap** implementation:
   + All operations are O( *lg |V|* )
   + **Total**: O( *|V| lg |V|* + *lg |V|* + *|V| lg |V|* + *|E| lg |V|* )
     <br/> = O( *|E| lg |V|* )
 + Using **Fibonacci heaps** *(ch19)* instead:
-  + \`Q.setPriority()\` in O(*1*) **amortised** time
+  + *Q.setPriority()* takes only O(*1*) **amortised** time
   + **Total**: O( *|V| lg |V|* + *|E|* )
 
 ---
@@ -182,7 +183,7 @@ def PrimMST( V, E, w, r ):
 ## Shortest-path problems
 + **Input**: directed **graph** *(V, E)* and edge **weights** *w*
 + **Output**: find **shortest paths** between all vertices
-  + For any **path** \`p = {v\_i)\_0^k\`,
+  + For any **path** \`p = {v\_i}\_0^k\`,
     its **weight** is \`w(p) = sum w(v\_(i-1), v\_i)\`
 + The **shortest-path weight** is *&delta;(u,v)* = *min( w(p) )*
   + (or *&infin;* if *v* is not **reachable** from *u*)
@@ -246,7 +247,7 @@ def relaxEdge( u, v, w ):
 + Then we can **swap** out \`p'\_(xy)\` for \`p\_(xy)\`:
   + Let \`p' = p\_(ux) + p'\_(xy) + p\_(yv)\`
   + So *w(p')* = \`w(p\_(ux)) + w(p'\_(xy)) + w(p\_(yv))\`
-    < \`w(p\_(ux)) + w(p\_(xy)) + w(p\_(yv))\` = *w(p)*
+    <br/> < \`w(p\_(ux)) + w(p\_(xy)) + w(p\_(yv))\` = *w(p)*
 + This **contradicts** the assumption that *p* was the shortest path
   from *u* &rarr; *v*
 
@@ -273,7 +274,7 @@ def relaxEdge( u, v, w ):
 + Allows **negative-weight** edges
   + If any **net-negative** cycle is reachable, returns *FALSE*
 + **Relax** every edge, *|V|-1* times (**complexity**?)
-+ Guaranteed to **converge** since shortest paths have &le; *|V|-1* edges
++ Guaranteed to **converge**: shortest paths &le; *|V|-1* edges
   + Each **iteration** relaxes one edge along shortest path
 
 <div class="imgbox"><div><pre><code data-trim>
@@ -353,12 +354,12 @@ def ssspDijkstra( V, E, w, src ):
 ---
 ## Dijkstra: complexity
 + **Initialisation**: &Theta;( *|V|* )
-+ `Q.popMin()` is run exactly *|V|* times
-+ `Q.setPriority()` (called by `relaxEdge`) is run O( *|E|* ) times
++ *Q.popMin()* is run exactly *|V|* times
++ *Q.setPriority()* (called by *relaxEdge*) is run O( *|E|* ) times
 + Using **binary min-heaps**, all ops are O( *lg |V|* )
   + **Total** time: O( *|E| lg |V|* )
 + Using **Fibonacci heaps**:
-  + `Q.setPriority()` takes only O(*1*) **amortised** time
+  + *Q.setPriority()* takes only O(*1*) **amortised** time
   + **Total** time: O( *|V| lg |V|* + *|E|* )
 
 ---
