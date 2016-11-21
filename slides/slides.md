@@ -20,14 +20,22 @@
 
 ---
 ## Minimum spanning tree
-+ Input: connected, **undirected** graph *G = (V, E)*,
-  + with **weights** *w(u, v)* on each edge
-+ Output: find a tree *T* &sube; E **connecting** all vertices
-  + Minimising **total weight** \`w(T) = sum\_T w(u,v)\`
++ Input: connected, **undirected** graph *G = (V, E)*
+  + Each edge has a **weight** *w(u, v)* &ge; 0
++ Output: a tree *T* &sube; E, **connecting** all vertices
+  + Minimise **total weight** \`w(T) = sum\_T w(u,v)\`
++ Complexity of a **brute-force** exhaustive algorithm?
 + **Why** must *T* be a tree?  Num **edges** in *T*? **Unique**?
-+ **Applications**:
-  + Utilities: gas/elec/water (Borůvka, Moravia), internet
-  + Image analysis: registration, OCR
++ **Applications**: *elec grid* (Moravia), *networking* (STP)
+  + *Image analysis*: registration (Renyi entropy), OCR
+
+![Fig 23-1: MST](static/img/Fig-23-1.svg)
+
+>>>
++ brute force: 2^|E|
++ tree = no cycles: if cycle, then can delete an edge
++ MST must have exactly |V|-1 edges
++ MST not necessarily unique
 
 ---
 ## Outline of greedy solution
@@ -42,6 +50,7 @@ def MST( V, E ):
   + Loop iterates exactly *|V| - 1* times
 + What is a "**safe edge**" to add?
   + Adding it to *A* doesn't **prevent** us from finding a MST
+    + To satisfy **greedy choice** property
   + *A* starts as a **subset** of some MST
   + *A* plus the edge is **still** a subset of some MST
 + **How** do we find "safe edges"?
@@ -228,7 +237,9 @@ def PrimMST( V, E, w, r ):
   possible sources and destinations *(ch25)*
 + **Negative-weight** edges: usually *allowable*
   + Just can't allow **net-negative** cycles!
-  + **Net-positive** cycles don't help with shortest-path, either
+
+![cycles in shortest-path](static/img/Fig-24-1.svg)
+<!-- .element: style="width: 70%" -->
 
 ---
 ## Single-source shortest paths
