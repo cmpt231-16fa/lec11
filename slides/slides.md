@@ -8,7 +8,7 @@
 ---
 ## Outline for today
 + Minimum spanning tree
-  + Outline of generic solution
+  + Outline of greedy solution
   + Kruskal's algorithm (disjoint-set forest)
   + Prim's algorithm (priority queue)
   + Uniqueness of MST
@@ -30,7 +30,7 @@
   + Image analysis: registration, OCR
 
 ---
-## Outline of generic solution
+## Outline of greedy solution
 ```
 def MST( V, E ):
   init A = {}
@@ -74,6 +74,16 @@ def MST( V, E ):
   + Also, *A* &cup; {*(u,v)*} &sube; *T'*, so *(u,v)* is **safe** for *A*
 
 ---
+## Greedy solutions to MST
++ **Kruskal**: merge components: O( *|E| lg |E|* )
++ **Prim**: add edges: O( *|V| lg |V|* + *|E|* )
++ Simplifying **assumptions**:
+  + Edge weights **distinct**: greedy algorithm still *works*
+    with equal weights, but need to tweak proof
+  + **Connected** graph: if not, Kruksal will still produce
+    minimum spanning *forest*: MST on each *component*
+
+---
 ## Outline
 
 ---
@@ -81,7 +91,9 @@ def MST( V, E ):
 + Initialise each **vertex** as its own **component**
 + **Merge** components by choosing **light edges**
   + Scan edge list in **increasing** order of weight
+  + Ensure adding edge won't create a **cycle**
 + Use **disjoint-set** ADT to find crossing edges *(ch21)*
+  + *MakeSet*(), *FindSet*(), *Union*()
 
 <div class="imgbox"><div><pre><code data-trim>
 def KruskalMST( V, E, w ):
@@ -108,7 +120,7 @@ def KruskalMST( V, E, w ):
   + `FindSet` and `Union` are both O( *&alpha;(|V|)* )
     + *&alpha;()*: inverse **Ackermann** function: very slow growth,
       *&alpha;(n)* &le; *4* for all reasonable *n*
-+ So Kruskal is O( *|V|* + *|E| lg( |E| )* ) = O( *|E| lg( |E| )* )
++ So Kruskal is O( *|V|* + *|E| lg |E|* ) = O( *|E| lg |E|* )
   + Note that \`|V|-1 <= |E| <= |V|^2\`
 + If edges are **pre-sorted**, just O( *|E| &alpha;(|V|)* ),
   or basically **linear** in *|E|*
