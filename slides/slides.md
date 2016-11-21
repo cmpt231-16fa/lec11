@@ -92,8 +92,8 @@ def MST( V, E ):
 + **Merge** components by choosing **light edges**
   + Scan edge list in **increasing** order of weight
   + Ensure adding edge won't create a **cycle**
-+ Use **disjoint-set** ADT to find crossing edges *(ch21)*
-  + *MakeSet*(), *FindSet*(), *Union*()
++ Use **disjoint-set** ADT (*ch21*) to track *components*
+  + Operations: *MakeSet*(), *FindSet*(), *Union*()
 
 <div class="imgbox"><div><pre><code data-trim>
 def KruskalMST( V, E, w ):
