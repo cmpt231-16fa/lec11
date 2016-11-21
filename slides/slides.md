@@ -9,11 +9,11 @@
 ## Outline for today
 + Minimum spanning tree
   + Outline of generic solution
-  + Kruskal's algorithm (builds a forest)
-  + Prim's algorithm (builds a tree)
+  + Kruskal's algorithm (disjoint-set forest)
+  + Prim's algorithm (priority queue)
   + Uniqueness of MST
 + Single-source shortest paths
-  + Properties / lemmas
+  + Introduction to shortest-path
   + Bellman-Ford algorithm (allowing weight < 0)
   + Special case for DAG (no cycles)
   + Dijkstra's algorithm (weights &ge; 0)
@@ -180,7 +180,7 @@ def PrimMST( V, E, w, r ):
 ## Outline
 
 ---
-## Shortest-path problems
+## Shortest-path
 + **Input**: directed **graph** *(V, E)* and edge **weights** *w*
 + **Output**: find **shortest paths** between all vertices
   + For any **path** \`p = {v\_i}\_0^k\`,
