@@ -112,14 +112,14 @@ def KruskalMST( V, E, w ):
 
 ---
 ## Kruskal: complexity
-+ **Initialise** components: *|V|* &lowast; `MakeSet`
-+ **Sort** edge list by weight: *|E| lg( |E| )*
-+ Main **for** loop: *|E|* &lowast; `FindSet` + *|V|* &lowast; `Union`
-+ **Disjoint-set** implementation (see *ch21*):
-  + Forest with union by rank and path compression
++ **Initialise** components: *|V|* calls to *MakeSet*
++ **Sort** edge list by weight: *|E| lg |E|*
++ Main **for** loop: *|E|* calls to *FindSet* + *|V|* calls to *Union*
++ **Disjoint-set** forest w/ union by rank + path compress:
   + `FindSet` and `Union` are both O( *&alpha;(|V|)* )
-    + *&alpha;()*: inverse **Ackermann** function: very slow growth,
-      *&alpha;(n)* &le; *4* for all reasonable *n*
+  + *&alpha;()*: inverse [Ackermann](https://en.wikipedia.org/wiki/Ackermann_function)
+    function: very slow growth,
+    &le; *4* for reasonable *n* (< \`2^(2^(2^(2^16)))\`)
 + So Kruskal is O( *|V|* + *|E| lg |E|* ) = O( *|E| lg |E|* )
   + Note that \`|V|-1 <= |E| <= |V|^2\`
 + If edges are **pre-sorted**, just O( *|E| &alpha;(|V|)* ),
