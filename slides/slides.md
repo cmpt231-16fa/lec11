@@ -550,18 +550,18 @@ def ssspDijkstra( V, E, w, src ):
 
 ---
 ## Dijkstra: correctness
-+ **Invariant**: at top of loop, *u.d* = *&delta;(s,u)* &forall; *u* &notin; *Q*
++ **Invariant**: at top of loop, *u.d* = *&delta;(src,u)* &forall; *u* &notin; *Q*
 + **Proof**: suppose **not**: <br/>
   let *u* be the **first** vertex popped from *Q*
-  with *u.d* &ne; *&delta;(s,u)*
-  + &exist; **path** *s* &#x21DD; *u* (or else *u.d* = *&infin;* = *&delta;(s,u)*)
-+ Let *p* be a **shortest** path *s* &#x21DD; *u*
+  with *u.d* &ne; *&delta;(src,u)*
+  + &exist; **path** *src* &#x21DD; *u* (or else *u.d* = *&infin;* = *&delta;(src,u)*)
++ Let *p* be a **shortest** path *src* &#x21DD; *u*
   + Let *(x,y)* be the **first** edge in *p* crossing from *!Q* to *Q*
-  + So *x.d* = *&delta;(s,d)*, since *u* is **first** with *u.d* &ne; *&delta;(s,u)*
-+ We **relaxed** *(x,y)*, so *y.d* = *&delta;(s,y)* (by **convergence**)
-  + And *y* is on the shortest path, so *&delta;(s,y)* &le; *&delta;(s,u)* &le; *u.d*
+  + So *x.d* = *&delta;(src,d)*, since *u* is **first** with *u.d* &ne; *&delta;(src,u)*
++ We **relaxed** *(x,y)*, so *y.d* = *&delta;(src,y)* (by **convergence**)
+  + And *y* is on the shortest path, so *&delta;(src,y)* &le; *&delta;(src,u)* &le; *u.d*
 + But **both** *y* and *u* &in; *Q* when we `popMin()`, so *u.d* &le; *y.d*
-+ Hence *u.d* = *y.d* = *&delta;(s,u)*, a **contradiction**
++ Hence *u.d* = *y.d* = *&delta;(src,u)*, a **contradiction**
 
 ---
 ## Dijkstra: complexity
