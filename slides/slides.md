@@ -87,6 +87,7 @@ use Prim's algorithm for MST.
 [(Mario Klingemann, Algorithmic Art)](http://mario-klingemann.tumblr.com/)
 </div>
 [![MST dithering](static/img/Klingemann-MST-dither.jpg)](https://www.flickr.com/photos/quasimondo/2695373627/)
+<!-- .element: style="width: 80%" -->
 
 ---
 ## Application: genomics / proteomics
@@ -124,12 +125,12 @@ def MST( V, E ):
   + A cut **respects** *A* iff no edge in *A* crosses the cut
   + A **light edge** has *min weight* over all edges crossing the cut
 
-<div class="imgbox"><div>
+<div class="imgbox"><div style="flex:2">
 Theorem: any <strong>light edge</strong>
 <em>(u, v)</em> crossing a <strong>cut</strong> <em>(S, V-S)</em>
 that <strong>respects</strong> <em>A</em> is a
 <strong>safe edge</strong> for <em>A</em>
-</div><div>
+</div><div style="flex:3">
 ![Light edges: Fig 23-2](static/img/Fig-23-2.svg)
 </div></div>
 
