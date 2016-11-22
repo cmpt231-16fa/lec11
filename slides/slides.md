@@ -23,11 +23,15 @@
 + Input: connected, **undirected** graph *G = (V, E)*
   + Each edge has a **weight** *w(u, v)* &ge; 0
 + Output: a tree *T* &sube; E, **connecting** all vertices
-  + Minimise **total weight** \`w(T) = sum\_T w(u,v)\`
-+ Complexity of a **brute-force** exhaustive algorithm?
-+ **Why** must *T* be a tree?  Num **edges** in *T*? **Unique**?
+  + Minimise **total weight** \`w(T) = sum\_((u,v) in T) w(u,v)\`
 
+<div class="imgbox"><div><ul>
+<li> Complexity of <strong>brute-force</strong> exhaustive search? </li>
+<li> <strong>Why</strong> must <em>T</em> be a tree? </li>
+<li> Num <strong>edges</strong> in <em>T</em>? <strong>Unique</strong>? </li>
+</ul></div><div>
 ![Fig 23-1: MST](static/img/Fig-23-1.svg)
+</div></div>
 
 >>>
 + brute force: 2^|E|
@@ -80,10 +84,15 @@ def MST( V, E ):
   + A cut **respects** *A* iff no edge in *A* crosses the cut
   + A **light edge** crossing the cut has *min weight*
     over all edges crossing the cut
-+ Theorem: any **light edge** *(u, v)* crossing a cut *(S, V-S)* that
-  **respects** *A* is a **safe edge** for *A*
 
+<div class="imgbox"><div>
+Theorem: any <strong>light edge</strong>
+<em>(u, v)</em> crossing a cut <em>(S, V-S)</em> that
+<strong>respects</strong> <em>A</em> is a
+<strong>safe edge</strong> for <em>A</em>
+</div><div>
 ![Safe edge theorem](static/img/safe-edge.png)
+</div></div>
 
 ---
 ## Proof of safe edge theorem
@@ -104,10 +113,12 @@ def MST( V, E ):
 + **Kruskal**: merge components: O( *|E| lg |E|* )
 + **Prim**: add edges: O( *|V| lg |V|* + *|E|* )
 + Simplifying **assumptions**:
-  + Edge weights **distinct**: greedy algorithm still *works*
-    with equal weights, but need to tweak proof
-  + **Connected** graph: if not, Kruksal will still produce
-    minimum spanning *forest*: MST on each *component*
+  + Edge weights **distinct**:
+    + greedy algorithm still *works*
+      with equal weights, but need to tweak proof
+  + **Connected** graph:
+    + if not, Kruksal will still produce
+      minimum spanning *forest*: MST on each *component*
 
 ---
 ## Outline
