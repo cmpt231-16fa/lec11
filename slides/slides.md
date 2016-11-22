@@ -20,16 +20,16 @@ Or as His counselor has *informed* Him?
 ---
 <!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
 ## Outline for today
-+ **Minimum spanning tree** (MST)
++ **Minimum spanning tree** (*MST*)
   + Outline of **greedy** solutions
-  + **Kruskal**'s algorithm (disjoint-set forest)
-  + **Prim**'s algorithm (priority queue)
+  + **Kruskal**'s algorithm (*disjoint-set forest*)
+  + **Prim**'s algorithm (*priority queue*)
   + **Summary** of MST
 + **Single-source** shortest paths
   + Optimal **substructure**
-  + **Bellman-Ford** algorithm (allowing weight < 0)
-  + Special case for **DAG** (no cycles)
-  + **Dijkstra**'s algorithm (weights &ge; 0)
+  + **Bellman-Ford** algorithm (*allowing weight < 0*)
+  + Special case for **DAG** (*no cycles*)
+  + **Dijkstra**'s algorithm (*weights &ge; 0*)
 
 ---
 ## Minimum spanning tree
@@ -580,16 +580,16 @@ def ssspDijkstra( V, E, w, src ):
 ---
 <!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
 ## Outline for today
-+ **Minimum spanning tree** (MST)
++ **Minimum spanning tree** (*MST*)
   + Outline of **greedy** solutions
-  + **Kruskal**'s algorithm (disjoint-set forest)
-  + **Prim**'s algorithm (priority queue)
+  + **Kruskal**'s algorithm (*disjoint-set forest*)
+  + **Prim**'s algorithm (*priority queue*)
   + **Summary** of MST
 + **Single-source** shortest paths
   + Optimal **substructure**
-  + **Bellman-Ford** algorithm (allowing weight < 0)
-  + Special case for **DAG** (no cycles)
-  + **Dijkstra**'s algorithm (weights &ge; 0)
+  + **Bellman-Ford** algorithm (*allowing weight < 0*)
+  + Special case for **DAG** (*no cycles*)
+  + **Dijkstra**'s algorithm (*weights &ge; 0*)
 
 ---
 <!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" class="empty" -->
