@@ -482,7 +482,7 @@ def ssspBellmanFord( V, E, w, src ):
     if v.d > u.d + w( u, v ):
       return FALSE
 </code></pre></div><div>
-![Bellman-Ford](static/img/bellman-ford.svg)
+![Bellman-Ford: Fig 24-4(b)](static/img/Fig-24-4b.png)
 </div></div>
 
 ---
@@ -492,15 +492,15 @@ def ssspBellmanFord( V, E, w, src ):
   + Edges of **all** paths are relaxed **in order**
   + Don't need to **iterate** *|V|-1* times over all edges
 
-<div class="imgbox"><div><pre><code data-trim>
+<div class="imgbox"><div style="flex:2"><pre><code data-trim>
 def ssspDAG( V, E, w, src ):
   topologicalSort( V, E )
   initSingleSource( V, E, src )
   for u in V:
     for v in E.adj[ u ]:
       relaxEdge( u, v, w )
-</code></pre></div><div>
-![topological sort](static/img/topo-sort.svg)
+</code></pre></div><div style="flex:3">
+![topological sort: Fig 24-5(a)](static/img/Fig-24-5a.png)
 </div></div>
 
 ---
@@ -535,7 +535,7 @@ def ssspDijkstra( V, E, w, src ):
     for v in E.adj[ u ]:
       relaxEdge( u, v, w )
 </code></pre></div><div>
-![Dijkstra](static/img/dijkstra.svg)
+![Dijkstra, Fig 24-6(a)](static/img/Fig-24-6a.png)
 </div></div>
 
 ---
