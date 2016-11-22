@@ -147,15 +147,16 @@ that <strong>respects</strong> <em>A</em> is a
 
 ---
 ## Greedy solutions to MST
-+ **Kruskal**: merge components: O( *|E| lg |E|* )
-+ **Prim**: add edges: O( *|V| lg |V|* + *|E|* )
++ **Kruskal**: merge *components*: O( *|E| lg |E|* )
++ **Prim**: add *edges*: O( *|V| lg |V|* + *|E|* )
 + Simplifying **assumptions**:
   + Edge weights **distinct**:
-    + greedy algorithm still *works*
+    + Greedy algorithm still *works*
       with equal weights, but need to tweak proof
   + **Connected** graph:
-    + if not, Kruksal will still produce
-      minimum spanning *forest*: MST on each *component*
+    + If not, Kruksal will still produce
+      minimum spanning *forest*:
+    + A MST on each *component*
 
 ---
 <!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
@@ -249,7 +250,9 @@ def PrimMST( V, E, w, r ):
       if Q.exists( v ) and w( u, v ) < v.key:
         v.parent = u
         Q.setPriority( v, w( u, v ) )
-</code></pre></div><div>
+</code></pre>
+<strong>Complexity?</strong> (# calls to queue)
+</div><div>
 ![Fig 23-1: Kruskal](static/img/Fig-23-1.svg)
 </div></div>
 
@@ -285,7 +288,7 @@ def PrimMST( V, E, w, r ):
 ## Summary of MST algos
 + All following generic **greedy** outline:
   + Add one *light edge* at a time
-  + **Greedy property**: doing this doesn't lock us out of finding MST
+  + *Greedy property*: doing this doesn't lock us out of finding MST
 + **Kruskal**:
   + Merges *components*
   + Uses *disjoint-set forest* ADT
@@ -304,7 +307,7 @@ def PrimMST( V, E, w, r ):
 + **Proof**: Let *T* and *T'* be two **MST**s of a graph
   + Let *(u,v)* &in; *T*.  Want to show *(u,v)* &in; *T'*:
 + *T* is a **tree**, so *T* - {*(u,v)*} produces a **cut**: call it *(S, V-S)*
-+ Then *(u,v)* is a **light edge** crossing *(S, V-S)* (*#23.1-3*)
+  + Then *(u,v)* is a **light edge** crossing *(S, V-S)* (*#23.1-3*)
 + But *T'* must also **cross** the cut: call its edge *(x,y)*
   + *(x,y)* is also a **light edge** crossing *(S, V-S)*
 + By assumption, the light edge is **unique**
@@ -347,13 +350,13 @@ def PrimMST( V, E, w, r ):
 
 <div class="imgbox"><div>
 ![Google self-driving car](static/img/Google-LexusRX450h-self-drive.jpg)
-<!-- .element: style="width: 30%" -->
+<!-- .element: style="width: 50%" -->
 <div class="caption">
 Google self-driving Lexus RX450h
 </div>
 </div><div>
 ![CPU chip design](static/img/intel-haswell-die.jpg)
-<!-- .element: style="width: 30%" -->
+<!-- .element: style="width: 50%" -->
 <div class="caption">
 Intel Haswell die
 </div>
@@ -369,6 +372,8 @@ Intel Haswell die
 + **All-pairs**: simultaneously find paths for **all**
   possible sources and destinations *(ch25)*
 
+<hr/>
+
 + We'll focus on *single-source* today
   + *All-pairs* next week
 
@@ -381,6 +386,7 @@ Intel Haswell die
   + *Shortest* paths will never take such a cycle
 
 ![cycles in shortest-path](static/img/Fig-24-1.svg)
+<!-- .element: style="width: 80%" -->
 
 ---
 <!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
@@ -403,8 +409,8 @@ Intel Haswell die
   + *v.d*: shortest-path **weight** from source
     + All initially *&infin;*, except *src.d* = *0*
 + Method: **edge relaxation**
-  + Will **using** the edge *(u,v)* **improve** the
-    shortest-path estimate to *v*?
+  + Will **using** the edge *(u,v)* give us a
+    **shorter** path to *v*?
 + Algorithms differ in **sequence** of relaxing edges
 
 ```
@@ -493,8 +499,8 @@ def ssspBellmanFord( V, E, w, src ):
 
 <div class="imgbox"><div style="flex:2"><pre><code data-trim>
 def ssspDAG( V, E, w, src ):
-  topologicalSort( V, E )
   initSingleSource( V, E, src )
+  topologicalSort( V, E )
   for u in V:
     for v in E.adj[ u ]:
       relaxEdge( u, v, w )
