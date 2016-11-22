@@ -40,15 +40,18 @@
 + MST not necessarily unique
 
 ---
-## Applications: networks
+## Applications: power grid
 [Otakar Borůvka](http://www-groups.dcs.st-and.ac.uk/history/Biographies/Boruvka.html),
-mathematician, building **electrical grid** in Moravia
+mathematician, building **electrical grid** in Moravia, 1926
 <div class="imgbox"><div>
 ![Otakar Borůvka](static/img/boruvka.jpg)
 </div><div>
 ![MST](static/img/Minimum_spanning_tree.svg)
+<!-- .element: style="background: #aaa" -->
 </div></div>
 
+---
+## Applications: networking
 [Spanning tree protocol](http://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/24062-146.html)
 ![STP](http://www.cisco.com/c/dam/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5-a.gif)
 
@@ -244,15 +247,22 @@ def PrimMST( V, E, w, r ):
 ## Applications of shortest-path
 + **GPS**/maps: turn-by-turn *directions*
   + **All-pairs**: optimise over entire *fleet* of trucks
-  + **Logistics** / operations research
 + **Networking**: optimal *routing*
 + **Robotics**, self-driving: *path* planning
-+ **Layout** in *factories*, FPGA / *chip* design
++ *Layout* in **factories**, FPGA / **chip** design
 + Solving **puzzles**, e.g., *Rubik's Cube*:
-  + *V* = states, *E* = transitions / moves
 
-![Google self-driving car]()
-![CPU chip design]()
+<div class="imgbox"><div>
+![Google self-driving car](static/img/Google-LexusRX450h-self-drive.jpg)
+<div class="caption">
+Google self-driving Lexus RX450h
+</div>
+</div><div>
+![CPU chip design](static/img/intel-haswell-die.jpg)
+<div class="caption">
+Intel Haswell die
+</div>
+</div></div>
 
 ---
 ## Variants of shortest-path
