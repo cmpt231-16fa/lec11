@@ -76,19 +76,18 @@ Image **segmentation** / registration using Renyi entropy
 
 ---
 ## Application: dithering
-
-Rasterised image as 3000 dots,
+Rasterise image as 3000 dots,
 generate [Voronoi diagram](https://en.wikipedia.org/wiki/Voronoi_diagram)
 to find nearest neighbours,
 use Prim's algorithm for MST.
 
+<div class="caption">
 [(Mario Klingemann, Algorithmic Art)](http://mario-klingemann.tumblr.com/)
-
-
+</div>
 [![MST dithering](static/img/Klingemann-MST-dither.jpg)](https://www.flickr.com/photos/quasimondo/2695373627/)
 
 ---
-## Application: genomics + proteomics
+## Application: genomics / proteomics
 Compression of [DNA sequence DBs](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2426707/)
 
 <div class="imgbox"><div>
@@ -129,7 +128,7 @@ Theorem: any <strong>light edge</strong>
 that <strong>respects</strong> <em>A</em> is a
 <strong>safe edge</strong> for <em>A</em>
 </div><div>
-![Safe edge theorem](static/img/safe-edge.png)
+![Light edges: Fig 23-2](static/img/Fig-23-2.svg)
 </div></div>
 
 ---
