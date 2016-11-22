@@ -550,7 +550,8 @@ def ssspDijkstra( V, E, w, src ):
 ---
 ## Dijkstra: correctness
 + **Invariant**: at top of loop, *u.d* = *&delta;(s,u)* &forall; *u* &notin; *Q*
-+ **Proof**: suppose **not**: let *u* be the **first** vertex popped from *Q*
++ **Proof**: suppose **not**: <br/>
+  let *u* be the **first** vertex popped from *Q*
   with *u.d* &ne; *&delta;(s,u)*
   + &exist; **path** *s* &#x21DD; *u* (or else *u.d* = *&infin;* = *&delta;(s,u)*)
 + Let *p* be a **shortest** path *s* &#x21DD; *u*
