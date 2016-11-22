@@ -82,9 +82,10 @@ to find nearest neighbours,
 use Prim's algorithm for MST.
 
 <div class="caption">
-[(Mario Klingemann, Algorithmic Art)](http://mario-klingemann.tumblr.com/)
+([Mario Klingemann](http://mario-klingemann.tumblr.com/),
+[Algorithmic Art](https://www.flickr.com/photos/quasimondo/2695373627/))
 </div>
-[![MST dithering](static/img/Klingemann-MST-dither.jpg)](https://www.flickr.com/photos/quasimondo/2695373627/)
+![MST dithering](static/img/Klingemann-MST-dither.jpg)
 <!-- .element: style="width: 80%" -->
 
 ---
@@ -124,10 +125,11 @@ def MST( V, E ):
   + A **light edge** has *min weight* over all edges crossing the cut
 
 <div class="imgbox"><div style="flex:2">
-Theorem: any <strong>light edge</strong>
-<em>(u, v)</em> crossing a <strong>cut</strong> <em>(S, V-S)</em>
-that <strong>respects</strong> <em>A</em> is a
-<strong>safe edge</strong> for <em>A</em>
+Theorem: <br/>
+any <strong>light edge</strong> <em>(u, v)</em> <br/>
+crossing a <strong>cut</strong> <em>(S, V-S)</em> <br/>
+that <strong>respects</strong> <em>A</em> <br/>
+is a <strong>safe edge</strong> for <em>A</em>
 </div><div style="flex:3">
 ![Light edges: Fig 23-2](static/img/Fig-23-2.svg)
 </div></div>
@@ -240,7 +242,7 @@ def KruskalMST( V, E, w ):
 
 ---
 ## Prim: example
-<div class="imgbox"><div><pre><code data-trim>
+<div class="imgbox"><div style="flex:3"><pre><code data-trim>
 def PrimMST( V, E, w, r ):
   Q = new PriorityQueue( V )
   Q.setPriority( r, 0 )
@@ -252,8 +254,8 @@ def PrimMST( V, E, w, r ):
         v.parent = u
         Q.setPriority( v, w( u, v ) )
 </code></pre>
-<strong>Complexity?</strong> (# calls to queue)
-</div><div>
+<strong>Complexity?</strong> <br/> (# calls to queue)
+</div><div style="flex:2">
 ![Fig 23-1: Kruskal](static/img/Fig-23-1.svg)
 </div></div>
 
@@ -351,13 +353,13 @@ def PrimMST( V, E, w, r ):
 
 <div class="imgbox"><div>
 ![Google self-driving car](static/img/Google-LexusRX450h-self-drive.jpg)
-<!-- .element: style="width: 50%" -->
+<!-- .element: style="width: 65%" -->
 <div class="caption">
 Google self-driving Lexus RX450h
 </div>
 </div><div>
 ![CPU chip design](static/img/intel-haswell-die.jpg)
-<!-- .element: style="width: 50%" -->
+<!-- .element: style="width: 65%" -->
 <div class="caption">
 Intel Haswell die
 </div>
@@ -375,8 +377,9 @@ Intel Haswell die
 
 <hr/>
 
-+ We'll focus on *single-source* today
-  + *All-pairs* next week
+We'll focus on *single-source* today
+
+*All-pairs* next week
 
 ---
 ## Negative-weight edges
@@ -428,13 +431,13 @@ def relaxEdge( u, v, w ):
   from *u* &rarr; *v*:
   + So \`delta(u, v) = w(p) = w(p\_(ux)) + w(p\_(xy)) + w(p\_(yv))\`
 + Let \`p'\_(xy)\` be a **shorter** path from *x* &rarr; *y*:
-  so \`w(p'\_(xy)) < w(p\_(xy))\`
+  + So \`w(p'\_(xy)) < w(p\_(xy))\`
 + Then we can **swap** out \`p'\_(xy)\` for \`p\_(xy)\`:
   + Let \`p' = p\_(ux) + p'\_(xy) + p\_(yv)\`
   + So *w(p')* = \`w(p\_(ux)) + w(p'\_(xy)) + w(p\_(yv))\`
     <br/> < \`w(p\_(ux)) + w(p\_(xy)) + w(p\_(yv))\` = *w(p)*
-+ This **contradicts** the assumption that *p* was the shortest path
-  from *u* &rarr; *v*
++ This **contradicts** the assumption <br/>
+  that *p* was the shortest path from *u* &rarr; *v*
 
 ---
 ## Properties / lemmas
