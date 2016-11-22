@@ -55,12 +55,14 @@ Or as His counselor has *informed* Him?
 ---
 ## Applications: power grid
 [Otakar Borůvka](http://www-groups.dcs.st-and.ac.uk/history/Biographies/Boruvka.html),
-mathematician, building **electrical grid** in Moravia, 1926
+mathematician, <br/>
+designing **electrical grid** in Moravia (now Czech Republic), 1926
 <div class="imgbox"><div>
 ![Otakar Borůvka](static/img/boruvka.jpg)
 </div><div>
 ![MST](static/img/Minimum_spanning_tree.svg)
 <!-- .element: style="background: #fff" -->
+![BC Hydro Transmission lines](static/img/BC-Hydro-Generating-Facilities-and-Major-Transmission-Line.gif)
 </div></div>
 
 ---
