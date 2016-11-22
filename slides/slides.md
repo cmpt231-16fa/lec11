@@ -60,13 +60,13 @@ mathematician, building **electrical grid** in Moravia, 1926
 ![Otakar Borůvka](static/img/boruvka.jpg)
 </div><div>
 ![MST](static/img/Minimum_spanning_tree.svg)
-<!-- .element: style="background: #aaa" -->
+<!-- .element: style="background: #fff" -->
 </div></div>
 
 ---
 ## Applications: networking
 [Spanning tree protocol](http://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/24062-146.html)
-![STP](http://www.cisco.com/c/dam/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5-a.gif)
+![Wireless mesh network](static/img/Wireless_mesh_network_diagram.jpg)
 
 ---
 ## Applications: image analysis
