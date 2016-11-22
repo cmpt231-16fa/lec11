@@ -1,22 +1,35 @@
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
 # CMPT231
 ## Lecture 11: ch23-24
 ### Minimum Spanning Tree and Shortest Path
 
 ---
-## Devotional
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
+## Isaiah 40:12-13 <span class="ref">(NASB)</span>
+Who has *measured* the **waters** <br/>
+in the hollow of His hand, <br/>
+And *marked off* the **heavens** by the span,
+
+And *calculated* the **dust** of the earth by the measure, <br/>
+And *weighed* the **mountains** in a balance <br/>
+And the **hills** in a pair of scales?
+
+Who has *directed* the **Spirit** of the Lord, <br/>
+Or as His counselor has *informed* Him?
 
 ---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
 ## Outline for today
-+ Minimum spanning tree
-  + Outline of greedy solution
-  + Kruskal's algorithm (disjoint-set forest)
-  + Prim's algorithm (priority queue)
-  + Uniqueness of MST
-+ Single-source shortest paths
-  + Introduction to shortest-path
-  + Bellman-Ford algorithm (allowing weight < 0)
-  + Special case for DAG (no cycles)
-  + Dijkstra's algorithm (weights &ge; 0)
++ **Minimum spanning tree** (MST)
+  + Outline of **greedy** solutions
+  + **Kruskal**'s algorithm (disjoint-set forest)
+  + **Prim**'s algorithm (priority queue)
+  + **Summary** of MST
++ **Single-source** shortest paths
+  + Optimal **substructure**
+  + **Bellman-Ford** algorithm (allowing weight < 0)
+  + Special case for **DAG** (no cycles)
+  + **Dijkstra**'s algorithm (weights &ge; 0)
 
 ---
 ## Minimum spanning tree
@@ -146,7 +159,18 @@ that <strong>respects</strong> <em>A</em> is a
       minimum spanning *forest*: MST on each *component*
 
 ---
-## Outline
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
+## Outline for today
++ Minimum spanning tree
+  + Outline of greedy solutions
+  + **Kruskal's algorithm (disjoint-set forest)**
+  + Prim's algorithm (priority queue)
+  + Summary of MST
++ Single-source shortest paths
+  + Optimal substructure
+  + Bellman-Ford algorithm (allowing weight < 0)
+  + Special case for DAG (no cycles)
+  + Dijkstra's algorithm (weights &ge; 0)
 
 ---
 ## Kruskal's algorithm for MST
@@ -188,7 +212,18 @@ def KruskalMST( V, E, w ):
   + or basically **linear** in *|E|*
 
 ---
-## Outline
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
+## Outline for today
++ Minimum spanning tree
+  + Outline of greedy solutions
+  + Kruskal's algorithm (disjoint-set forest)
+  + **Prim's algorithm (priority queue)**
+  + Summary of MST
++ Single-source shortest paths
+  + Optimal substructure
+  + Bellman-Ford algorithm (allowing weight < 0)
+  + Special case for DAG (no cycles)
+  + Dijkstra's algorithm (weights &ge; 0)
 
 ---
 ## Prim's algorithm for MST
@@ -234,7 +269,18 @@ def PrimMST( V, E, w, r ):
   + **Total**: \`O(|V|^2)\` (best for *dense* graphs)
 
 ---
-## Outline
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
+## Outline for today
++ Minimum spanning tree
+  + Outline of greedy solutions
+  + Kruskal's algorithm (disjoint-set forest)
+  + Prim's algorithm (priority queue)
+  + **Summary of MST**
++ Single-source shortest paths
+  + Optimal substructure
+  + Bellman-Ford algorithm (allowing weight < 0)
+  + Special case for DAG (no cycles)
+  + Dijkstra's algorithm (weights &ge; 0)
 
 ---
 ## Summary of MST algos
@@ -266,7 +312,18 @@ def PrimMST( V, E, w, r ):
   + So *(u,v)* = *(x,y)*, so *(u,v)* &in; *T'*
 
 ---
-## Outline
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
+## Outline for today
++ Minimum spanning tree
+  + Outline of greedy solutions
+  + Kruskal's algorithm (disjoint-set forest)
+  + Prim's algorithm (priority queue)
+  + Summary of MST
++ **Single-source shortest paths**
+  + Optimal substructure
+  + Bellman-Ford algorithm (allowing weight < 0)
+  + Special case for DAG (no cycles)
+  + Dijkstra's algorithm (weights &ge; 0)
 
 ---
 ## Shortest-path
@@ -327,6 +384,20 @@ Intel Haswell die
 ![cycles in shortest-path](static/img/Fig-24-1.svg)
 
 ---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
+## Outline for today
++ Minimum spanning tree
+  + Outline of greedy solutions
+  + Kruskal's algorithm (disjoint-set forest)
+  + Prim's algorithm (priority queue)
+  + Summary of MST
++ Single-source shortest paths
+  + **Optimal substructure**
+  + Bellman-Ford algorithm (allowing weight < 0)
+  + Special case for DAG (no cycles)
+  + Dijkstra's algorithm (weights &ge; 0)
+
+---
 ## Single-source shortest paths
 + **Output**: for each vertex *v* &in; V, store:
   + *v.parent*: links form a **tree** rooted at source
@@ -375,7 +446,18 @@ def relaxEdge( u, v, w ):
   + Then after **relaxing** its edges in **order**, *v.d* = *&delta;(s,v)*
 
 ---
-## Outline
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
+## Outline for today
++ Minimum spanning tree
+  + Outline of greedy solutions
+  + Kruskal's algorithm (disjoint-set forest)
+  + Prim's algorithm (priority queue)
+  + Summary of MST
++ Single-source shortest paths
+  + Optimal substructure
+  + **Bellman-Ford algorithm (allowing weight < 0)**
+  + **Special case for DAG (no cycles)**
+  + Dijkstra's algorithm (weights &ge; 0)
 
 ---
 ## Bellman-Ford algo for SSSP
@@ -422,7 +504,18 @@ def ssspDAG( V, E, w, src ):
 </div></div>
 
 ---
-## Outline
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
+## Outline for today
++ Minimum spanning tree
+  + Outline of greedy solutions
+  + Kruskal's algorithm (disjoint-set forest)
+  + Prim's algorithm (priority queue)
+  + Summary of MST
++ Single-source shortest paths
+  + Optimal substructure
+  + Bellman-Ford algorithm (allowing weight < 0)
+  + Special case for DAG (no cycles)
+  + **Dijkstra's algorithm (weights &ge; 0)**
 
 ---
 ## Dijkstra's algo for SSSP
@@ -471,5 +564,32 @@ def ssspDijkstra( V, E, w, src ):
   + **Total** time: O( *|V| lg |V|* + *|E|* )
 
 ---
-## Outline
+## Single-source shortest paths
++ Generic **outline**: *relax* edges
+  + To iteratively find *shortest distance* *&delta;* to each vertex
++ **Bellman-Ford**:
+  + Relax *all* edges, *|V|-1* times
+  + **Total** time: O( *|V| |E|* )
+  + Only one pass needed if *acyclic*, using *topological sort*
++ **Dijkstra**:
+  + *BFS* from source vertex
+  + Update *shortest distance* as we go
+  + Use *Fibonacci heap* for *priority queue*
+  + **Total** time: O( *|V| lg |V|* + *|E|* )
 
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" -->
+## Outline for today
++ **Minimum spanning tree** (MST)
+  + Outline of **greedy** solutions
+  + **Kruskal**'s algorithm (disjoint-set forest)
+  + **Prim**'s algorithm (priority queue)
+  + **Summary** of MST
++ **Single-source** shortest paths
+  + Optimal **substructure**
+  + **Bellman-Ford** algorithm (allowing weight < 0)
+  + Special case for **DAG** (no cycles)
+  + **Dijkstra**'s algorithm (weights &ge; 0)
+
+---
+<!-- .slide: data-background-image="https://sermons.seanho.com/img/bg/unsplash-1-29wyvvLJA-maps.jpg" class="empty" -->
