@@ -26,8 +26,6 @@
   + Minimise **total weight** \`w(T) = sum\_T w(u,v)\`
 + Complexity of a **brute-force** exhaustive algorithm?
 + **Why** must *T* be a tree?  Num **edges** in *T*? **Unique**?
-+ **Applications**: *elec grid* (Moravia), *networking* (STP)
-  + *Image analysis*: registration (Renyi entropy), OCR
 
 ![Fig 23-1: MST](static/img/Fig-23-1.svg)
 
@@ -36,6 +34,20 @@
 + tree = no cycles: if cycle, then can delete an edge
 + MST must have exactly |V|-1 edges
 + MST not necessarily unique
+
+---
+## Applications: networks
+[Otakar Boruvka](http://www-groups.dcs.st-and.ac.uk/history/Biographies/Boruvka.html),
+building electrical grid in Moravia
+![MST](static/img/Minimum_spanning_tree.svg)
+
+[Spanning tree protocol](http://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/24062-146.html)
+![STP](http://www.cisco.com/c/dam/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5-a.gif)
+
+---
+## Applications: image analysis
+  + *Image analysis*: registration using Renyi entropy, OCR
+  + *Compression*: [DNA sequence DBs](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2426707/)
 
 ---
 ## Outline of greedy solution
