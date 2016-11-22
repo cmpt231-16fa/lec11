@@ -235,6 +235,7 @@ def KruskalMST( V, E, w ):
   + \`V\_A\` = vertices **incident** on *A*
 + Use **priority queue** *Q* to store vertices in \`V-V\_A\`:
   + **Key** of vertex *v* is \`min\_(u in V\_A) w(u,v)\`
+    + Min distance from *v* to *A*
   + *Q.popMin()* returns the destination of a **light edge**
 + At each **iteration**: *A* is always a **tree**, and
   + *A* = { (*v*, *v.par*): *v* &in; *V* - {*r*} - *Q* }
@@ -269,7 +270,7 @@ def PrimMST( V, E, w, r ):
 + Using **Fibonacci heaps** *(ch19)* instead:
   + *Q.setPriority* takes only O(*1*) **amortised** time
   + **Total**: O( *|V| lg |V|* + *|E|* )
-+ Using an unordered **array** of edges:
++ Using an unordered **array** of vertices:
   + *setPriority* takes O(*1*), but *popMin* takes O(*|V|*)
   + **Total**: \`O(|V|^2)\` (best for *dense* graphs)
 
