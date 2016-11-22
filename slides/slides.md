@@ -37,17 +37,22 @@
 
 ---
 ## Applications: networks
-[Otakar Boruvka](http://www-groups.dcs.st-and.ac.uk/history/Biographies/Boruvka.html),
-building electrical grid in Moravia
+[Otakar Borůvka](http://www-groups.dcs.st-and.ac.uk/history/Biographies/Boruvka.html),
+mathematician, building **electrical grid** in Moravia
+<div class="imgbox"><div>
+![Otakar Borůvka](static/img/boruvka.jpg)
+</div><div>
 ![MST](static/img/Minimum_spanning_tree.svg)
+</div></div>
 
 [Spanning tree protocol](http://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/24062-146.html)
 ![STP](http://www.cisco.com/c/dam/en/us/support/docs/lan-switching/spanning-tree-protocol/5234-5-a.gif)
 
 ---
 ## Applications: image analysis
-  + *Image analysis*: registration using Renyi entropy, OCR
-  + *Compression*: [DNA sequence DBs](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2426707/)
+Image **segmentation** / registration using Renyi entropy
+
+Compression of [DNA sequence DBs](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2426707/)
 
 ---
 ## Outline of greedy solution
