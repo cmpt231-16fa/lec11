@@ -59,7 +59,30 @@ mathematician, building **electrical grid** in Moravia, 1926
 ## Applications: image analysis
 Image **segmentation** / registration using Renyi entropy
 
+![MRI segmentation of meningioma](static/img/MeningiomaMRISegmentation.png)
+
+---
+## Application: dithering
+
+Rasterised image as 3000 dots,
+generate [Voronoi diagram](https://en.wikipedia.org/wiki/Voronoi_diagram)
+to find nearest neighbours,
+use Prim's algorithm for MST.
+
+[(Mario Klingemann, Algorithmic Art)](http://mario-klingemann.tumblr.com/)
+
+
+[![MST dithering](static/img/Klingemann-MST-dither.jpg)](https://www.flickr.com/photos/quasimondo/2695373627/)
+
+---
+## Application: genomics + proteomics
 Compression of [DNA sequence DBs](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2426707/)
+
+<div class="imgbox"><div>
+![CBP chemist reading DNA profile of imported goods](static/img/CBP-DNA_profiling.jpg)
+</div><div>
+[![Hemagglutinin alignments](static/img/Hemagglutinin-alignments.png)](https://commons.wikimedia.org/wiki/File:Hemagglutinin-alignments.png)
+</div></div>
 
 ---
 ## Outline of greedy solution
@@ -85,13 +108,12 @@ def MST( V, E ):
   + Let *(S, V-S)* be a **cut**: partition the vertices
   + We say that an edge *(u, v)* **crosses the cut** iff \`u in S and v in V-S\`
   + A cut **respects** *A* iff no edge in *A* crosses the cut
-  + A **light edge** crossing the cut has *min weight*
-    over all edges crossing the cut
+  + A **light edge** has *min weight* over all edges crossing the cut
 
 <div class="imgbox"><div>
 Theorem: any <strong>light edge</strong>
-<em>(u, v)</em> crossing a cut <em>(S, V-S)</em> that
-<strong>respects</strong> <em>A</em> is a
+<em>(u, v)</em> crossing a <strong>cut</strong> <em>(S, V-S)</em>
+that <strong>respects</strong> <em>A</em> is a
 <strong>safe edge</strong> for <em>A</em>
 </div><div>
 ![Safe edge theorem](static/img/safe-edge.png)
@@ -156,14 +178,14 @@ def KruskalMST( V, E, w ):
 + **Sort** edge list by weight: *|E| lg |E|*
 + Main **for** loop: *|E|* calls to *FindSet* + *|V|* calls to *Union*
 + **Disjoint-set** forest w/ union by rank + path compress:
-  + `FindSet` and `Union` are both O( *&alpha;(|V|)* )
+  + *FindSet* and *Union* are both O( *&alpha;(|V|)* )
   + *&alpha;()*: inverse [Ackermann](https://en.wikipedia.org/wiki/Ackermann_function)
-    function: very slow growth,
+    function: <br/> very slow growth,
     &le; *4* for reasonable *n* (< \`2^(2^(2^(2^16)))\`)
-+ So Kruskal is O( *|V|* + *|E| lg |E|* ) = O( *|E| lg |E|* )
++ So Kruskal is O( *&alpha;(|V|)|E|* + *|E| lg |E|* ) = O( *|E| lg |E|* )
   + Note that \`|V|-1 <= |E| <= |V|^2\`
-+ If edges are **pre-sorted**, just O( *|E| &alpha;(|V|)* ),
-  or basically **linear** in *|E|*
++ If edges are **pre-sorted**, this is just O( *|E| &alpha;(|V|)* ),
+  + or basically **linear** in *|E|*
 
 ---
 ## Outline
@@ -199,20 +221,35 @@ def PrimMST( V, E, w, r ):
 
 ---
 ## Prim: complexity
-+ **Initialise** queue: *|V|* calls to *Q.insert()*
-  + Plus a single *Q.setPriority()* on the **root**
-+ Main **while** loop: *|V|* calls to *Q.popMin()*
-  + and O(*|E|*) calls to *Q.setPriority()*
++ Main **while** loop: *|V|* calls to *Q.popMin*
+  + and O(*|E|*) calls to *Q.setPriority*
 + Using **binary min-heap** implementation:
   + All operations are O( *lg |V|* )
-  + **Total**: O( *|V| lg |V|* + *lg |V|* + *|V| lg |V|* + *|E| lg |V|* )
-    <br/> = O( *|E| lg |V|* )
+  + **Total**: O( *|V| lg |V|* + *|E| lg |V|* ) = O( *|E| lg |V|* )
 + Using **Fibonacci heaps** *(ch19)* instead:
-  + *Q.setPriority()* takes only O(*1*) **amortised** time
+  + *Q.setPriority* takes only O(*1*) **amortised** time
   + **Total**: O( *|V| lg |V|* + *|E|* )
++ Using an unordered **array** of edges:
+  + *setPriority* takes O(*1*), but *popMin* takes O(*|V|*)
+  + **Total**: \`O(|V|^2)\` (best for *dense* graphs)
 
 ---
 ## Outline
+
+---
+## Summary of MST algos
++ All following generic **greedy** outline:
+  + Add one *light edge* at a time
+  + **Greedy property**: doing this doesn't lock us out of finding MST
++ **Kruskal**:
+  + Merges *components*
+  + Uses *disjoint-set forest* ADT
+  + O( *|E| lg |E|* ), or if pre-sorted edges: O( *|E|* )
++ **Prim**:
+  + *BFS* while updating shortest distance to each vertex
+  + Uses *Fibonacci heap* ADT for *priority queue*
+    + Or *d*-way heaps, or unordered *edge list*, or ...
+  + O( *|V| lg |V|* + *|E|* )
 
 ---
 ## Uniqueness of MST
@@ -250,15 +287,17 @@ def PrimMST( V, E, w, r ):
 + **Networking**: optimal *routing*
 + **Robotics**, self-driving: *path* planning
 + *Layout* in **factories**, FPGA / **chip** design
-+ Solving **puzzles**, e.g., *Rubik's Cube*:
++ Solving **puzzles**, e.g., *Rubik's Cube*: *E* = moves
 
 <div class="imgbox"><div>
 ![Google self-driving car](static/img/Google-LexusRX450h-self-drive.jpg)
+<!-- .element: style="width: 30%" -->
 <div class="caption">
 Google self-driving Lexus RX450h
 </div>
 </div><div>
 ![CPU chip design](static/img/intel-haswell-die.jpg)
+<!-- .element: style="width: 30%" -->
 <div class="caption">
 Intel Haswell die
 </div>
