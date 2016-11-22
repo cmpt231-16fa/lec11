@@ -312,11 +312,19 @@ Intel Haswell die
   + No better known way than to use **single-source**
 + **All-pairs**: simultaneously find paths for **all**
   possible sources and destinations *(ch25)*
-+ **Negative-weight** edges: usually *allowable*
+
++ We'll focus on *single-source* today
+  + *All-pairs* next week
+
+---
+## Negative-weight edges
++ We've assumed all edge weights are **positive**: *w(u,v) > 0*
++ Actually, **negative** weights are not a problem
   + Just can't allow **net-negative** cycles!
++ Net-**positive** cycles are allowable
+  + *Shortest* paths will never take such a cycle
 
 ![cycles in shortest-path](static/img/Fig-24-1.svg)
-<!-- .element: style="width: 70%" -->
 
 ---
 ## Single-source shortest paths
